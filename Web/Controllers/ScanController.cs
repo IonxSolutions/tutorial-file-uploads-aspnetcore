@@ -29,7 +29,6 @@ public class ScanController : Controller
 
         using var formData = new MultipartFormDataContent();
         formData.Add(new StreamContent(model.File.OpenReadStream()), "file", model.File.FileName);
-        formData.Add(new StringContent(model.File.FileName), "file_name");
 
         using var response = await client.PostAsync("malware/scan/file", formData);
         response.EnsureSuccessStatusCode();
